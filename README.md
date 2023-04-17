@@ -14,4 +14,4 @@ day 1:
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql
 ```
 
-2. 
+2. 安装nodejs，

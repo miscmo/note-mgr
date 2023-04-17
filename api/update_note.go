@@ -10,12 +10,9 @@ import (
 	"github.com/miscmo/note-mgr/repository"
 )
 
-// @Summary
-//
-
-func SaveNote(c *gin.Context) {
-	req := entity.SaveNoteReq{}
-	rsp := entity.SaveNoteRsp{}
+func UpdateNote(c *gin.Context) {
+	req := entity.UpdateNoteReq{}
+	rsp := entity.UpdateNoteRsp{}
 
 	var (
 		err error
@@ -29,7 +26,6 @@ func SaveNote(c *gin.Context) {
 	if err = decoder.Decode(&req); err != nil {
 		rsp.Code = entity.ErrParamInvaild
 		rsp.Msg = err.Error()
-		c.JSON(http.StatusOK, rsp)
 		fmt.Printf("decode failed, err: %+v, rsp: %v\n", err, rsp)
 		return
 	}
