@@ -6,6 +6,7 @@ import (
 
 	"github.com/miscmo/note-mgr/entity"
 	"github.com/miscmo/note-mgr/resource"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -39,7 +40,9 @@ func (this *NoteMongo) Find() ([]entity.Note, error) {
 
 	coll := resource.GetNoteCollection()
 
-	cursor, err := coll.Find(context.Background(), nil)
+	filter := bson.M{}
+
+	cursor, err := coll.Find(context.Background(), filter)
 	if err != nil {
 		return nil, err
 	}
@@ -68,5 +71,8 @@ func GetNoteMgr() NoteMgrInterface {
 func Init() {
 	if NoteMgr == nil {
 		NoteMgr = &NoteMongo{}
+	}
+	if ElementMgr == nil {
+		ElementMgr = &ElementMongo{}
 	}
 }

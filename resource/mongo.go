@@ -41,3 +41,7 @@ func GetDatabase() *mongo.Database {
 func GetNoteCollection() *mongo.Collection {
 	return GetDatabase().Collection((&entity.Note{}).CollName())
 }
+
+func GetElementCollection() *mongo.Collection {
+	return GetDatabase().Collection((&entity.Element{}).CollName())
+}
